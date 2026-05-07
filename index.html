@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>CareerPilot AI</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+
+<body>
+  <div class="app-shell">
+
+    <header class="topbar">
+      <button class="brand" data-screen-target="home" type="button">
+        <div class="brand-mark">
+          <span class="brand-mark-main">CP</span>
+          <span class="brand-orbit"></span>
+        </div>
+
+        <div class="brand-text">
+          <strong>CareerPilot AI</strong>
+          <span>карьерный навигатор · demo</span>
+        </div>
+      </button>
+
+      <button class="support-link" id="supportBtn" type="button">
+        Поддержать ☕
+      </button>
+    </header>
+
+    <main class="main-content">
+
+      <!-- HOME -->
+      <section class="screen active" id="screen-home">
+
+        <section class="hero-card">
+          <div class="hero-pattern"></div>
+
+          <div class="hero-left">
+            <p class="hero-badge">демо-версия · без ИИ</p>
+
+            <h1>
+              Твой путь к работе —
+              <span>спокойно, красиво и по шагам</span>
+            </h1>
+
+            <p class="hero-subtitle">
+              Сервис ведёт от поиска себя до резюме, вакансий, аналитики,
+              развития, релокации и будущего оффера.
+            </p>
+
+            <div class="hero-actions">
+              <button class="primary-btn" data-screen-target="profile" type="button">
+                Заполнить профиль
+              </button>
+
+              <button class="ghost-btn" data-screen-target="stats" type="button">
+                Открыть аналитику
+              </button>
+            </div>
+          </div>
+
+          <div class="hero-right">
+            <div class="compass-widget">
+              <div class="compass-ring">
+                <span class="compass-dot"></span>
+                <span class="compass-center">AI</span>
+              </div>
+              <p>Career Compass</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="quote-card">
+          <div class="quote-head">
+            <span>✨ Фраза дня</span>
+            <small>обновляется ежедневно</small>
+          </div>
+
+          <blockquote id="dailyQuote">
+            Сегодня ты можешь сделать маленький шаг, который приблизит тебя к большой цели.
+          </blockquote>
+        </section>
+
+        <div class="quick-help-row">
+          <button class="help-toggle-btn" id="tipsBtn" type="button">
+            💡 Подсказки
+          </button>
+
+          <button class="help-toggle-btn muted" id="howItWorksBtn" type="button">
+            Как это работает?
+          </button>
+        </div>
+
+        <section class="section-block">
+          <div class="section-heading">
+            <h2>Главное меню</h2>
+            <p>Основные разделы сервиса</p>
+          </div>
+
+          <div class="menu-zone">
+            <div class="menu-zone-bg">
+              <span class="zone-line line-1"></span>
+              <span class="zone-line line-2"></span>
+              <span class="zone-blob blob-1"></span>
+              <span class="zone-blob blob-2"></span>
+            </div>
+
+            <div class="menu-grid">
+
+              <button class="menu-card active-card card-profile" data-screen-target="profile" type="button">
+                <div class="card-visual">
+                  <span class="profile-head"></span>
+                  <span class="profile-body"></span>
+                  <span class="profile-line line-a"></span>
+                  <span class="profile-line line-b"></span>
+                </div>
+
+                <div class="menu-icon">👤</div>
+                <strong>Мой профиль</strong>
+                <span>Уже работает: можно заполнить и сохранить базовые данные.</span>
+              </button>
+
+              <button class="menu-card active-card card-stats" data-screen-target="stats" type="button">
+                <div class="card-visual">
+                  <span class="bar bar-1"></span>
+                  <span class="bar bar-2"></span>
+                  <span class="bar bar-3"></span>
+                  <span class="chart-line"></span>
+                </div>
+
+                <div class="menu-icon">📊</div>
+                <strong>Аналитика</strong>
+                <span>Уже работает: все метрики пока по нулям.</span>
+              </button>
+
+              <button
+                class="menu-card card-resume"
+                data-placeholder-title="Резюме и письма"
+                data-placeholder-text="Здесь позже будет генерация русского резюме, английского CV, сопроводительных писем и сообщений HR."
+                type="button"
+              >
+                <div class="card-visual">
+                  <span class="doc-page"></span>
+                  <span class="doc-line doc-line-1"></span>
+                  <span class="doc-line doc-line-2"></span>
+                  <span class="doc-line doc-line-3"></span>
+                </div>
+
+                <div class="menu-icon">📄</div>
+                <strong>Резюме</strong>
+                <span>Скоро: создание резюме и писем под вакансии.</span>
+              </button>
+
+              <button class="menu-card card-jobs" data-screen-target="jobs" type="button">
+                <div class="card-visual">
+                  <span class="search-circle"></span>
+                  <span class="search-handle"></span>
+                  <span class="job-chip chip-a"></span>
+                  <span class="job-chip chip-b"></span>
+                </div>
+
+                <div class="menu-icon">🔎</div>
+                <strong>Вакансии</strong>
+                <span>Демо-экран с фильтрами и карточкой вакансии.</span>
+              </button>
+
+              <button
+                class="menu-card card-analysis"
+                data-placeholder-title="Анализ вакансий"
+                data-placeholder-text="Здесь будет процент совпадения, шанс ответа, сильные и слабые стороны кандидата, советы по обучению и нейросетям."
+                type="button"
+              >
+                <div class="card-visual">
+                  <span class="target-ring ring-1"></span>
+                  <span class="target-ring ring-2"></span>
+                  <span class="target-dot"></span>
+                  <span class="target-arrow"></span>
+                </div>
+
+                <div class="menu-icon">🎯</div>
+                <strong>Анализ</strong>
+                <span>Скоро: анализ вакансий и рекомендации.</span>
+              </button>
+
+              <button
+                class="menu-card card-company"
+                data-placeholder-title="Анализ компании"
+                data-placeholder-text="Здесь будет анализ работодателя: сфера, отзывы, риски, надёжность, наличие визовой поддержки и условия релокации."
+                type="button"
+              >
+                <div class="card-visual">
+                  <span class="building-base"></span>
+                  <span class="window window-1"></span>
+                  <span class="window window-2"></span>
+                  <span class="window window-3"></span>
+                  <span class="window window-4"></span>
+                </div>
+
+                <div class="menu-icon">🏢</div>
+                <strong>Компания</strong>
+                <span>Скоро: проверка работодателя и рисков.</span>
+              </button>
+
+              <button
+                class="menu-card card-learning"
+                data-placeholder-title="План развития"
+                data-placeholder-text="Здесь появится персональный план: что изучить, какие проекты сделать и как подготовиться к интервью."
+                type="button"
+              >
+                <div class="card-visual">
+                  <span class="book book-1"></span>
+                  <span class="book book-2"></span>
+                  <span class="book book-3"></span>
+                  <span class="spark spark-1"></span>
+                  <span class="spark spark-2"></span>
+                </div>
+
+                <div class="menu-icon">📚</div>
+                <strong>План развития</strong>
+                <span>Скоро: навыки, проекты, инструменты.</span>
+              </button>
+
+              <button
+                class="menu-card card-visa"
+                data-placeholder-title="Виза и релокация"
+                data-placeholder-text="Здесь будет помощь с чек-листами документов, анкетами, письмами работодателю и этапами релокации."
+                type="button"
+              >
+                <div class="card-visual">
+                  <span class="passport"></span>
+                  <span class="passport-line"></span>
+                  <span class="plane"></span>
+                  <span class="route-line"></span>
+                </div>
+
+                <div class="menu-icon">🛂</div>
+                <strong>Виза</strong>
+                <span>Скоро: документы и релокация.</span>
+              </button>
+
+            </div>
+          </div>
+        </section>
+
+        <section class="section-block">
+          <div class="section-heading">
+            <h2>Демо-вакансия</h2>
+            <p>Так позже будут выглядеть найденные предложения</p>
+          </div>
+
+          <article class="job-card">
+            <div class="job-top">
+              <div>
+                <h3>Remote Frontend Developer</h3>
+                <p>SoftGarden · Germany / Remote EU</p>
+              </div>
+
+              <div class="match-badge">81%</div>
+            </div>
+
+            <div class="tags">
+              <span>Remote</span>
+              <span>€3 000–4 500</span>
+              <span>English B2</span>
+              <span>Visa possible</span>
+            </div>
+
+            <div class="job-columns">
+              <div class="job-box">
+                <strong>Подходит</strong>
+                <p>HTML, CSS, JavaScript, портфолио, удалённый формат.</p>
+              </div>
+
+              <div class="job-box">
+                <strong>Усилить</strong>
+                <p>TypeScript, GitHub, английское CV, cover letter.</p>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="founder-section">
+          <div class="founder-bg-mark">CP</div>
+
+          <div class="founder-content">
+            <div class="founder-text">
+              <p class="founder-label">партнёрство · идеи · стартапы</p>
+
+              <h2>
+                Есть интересная идея или стартап?
+                Я открыт к предложениям.
+              </h2>
+
+              <p>
+                Если у вас есть проект, идея для сервиса, партнёрства или совместной разработки —
+                можно связаться со мной. Рассмотрю предложения, связанные с IT, карьерными сервисами,
+                дизайном, автоматизацией и цифровыми продуктами.
+              </p>
+
+              <div class="founder-contacts">
+                <div>
+                  <span>ФИО</span>
+                  <strong>Попов Павел Александрович</strong>
+                </div>
+
+                <div>
+                  <span>Почта</span>
+                  <a href="mailto:popp228007@gmail.com">popp228007@gmail.com</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="founder-card">
+              <img src="assets/pavel-avatar.png" alt="Попов Павел Александрович" />
+              <div class="founder-card-info">
+                <strong>Павел Попов</strong>
+                <span>creator · CareerPilot AI</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="subtle-support">
+          Если тебе нравится идея сервиса — позже здесь можно будет
+          <button type="button" class="text-support-btn" id="supportBtn2">поддержать проект</button>.
+        </div>
+      </section>
+
+      <!-- PROFILE -->
+      <section class="screen" id="screen-profile">
+        <div class="page-heading">
+          <div>
+            <p class="page-label">мой профиль</p>
+            <h2>Базовая анкета кандидата</h2>
+          </div>
+
+          <button class="small-back-btn" data-screen-target="home" type="button">
+            На главную
+          </button>
+        </div>
+
+        <div class="form-card">
+          <form id="profileForm">
+            <div class="form-grid">
+              <label>
+                Имя
+                <input type="text" name="name" placeholder="Например: Павел" />
+              </label>
+
+              <label>
+                Желаемая должность
+                <input type="text" name="position" placeholder="Например: Frontend Developer" />
+              </label>
+
+              <label>
+                Опыт
+                <input type="text" name="experience" placeholder="Например: Junior / 1 год / учебные проекты" />
+              </label>
+
+              <label>
+                Навыки
+                <input type="text" name="skills" placeholder="HTML, CSS, JS, Figma..." />
+              </label>
+
+              <label>
+                Образование
+                <input type="text" name="education" placeholder="Вуз / курсы / направление" />
+              </label>
+
+              <label>
+                Языки
+                <input type="text" name="languages" placeholder="Русский, Английский B1..." />
+              </label>
+
+              <label>
+                Портфолио / ссылка
+                <input type="text" name="portfolio" placeholder="Behance / GitHub / сайт" />
+              </label>
+
+              <label>
+                Зарплата от
+                <input type="number" name="salary" placeholder="60000" />
+              </label>
+
+              <label>
+                Валюта
+                <select name="currency">
+                  <option value="RUB">₽ RUB</option>
+                  <option value="USD">$ USD</option>
+                  <option value="EUR">€ EUR</option>
+                  <option value="GBP">£ GBP</option>
+                </select>
+              </label>
+
+              <label>
+                Формат работы
+                <select name="work_format">
+                  <option value="Удалёнка">Удалёнка</option>
+                  <option value="Офис">Офис</option>
+                  <option value="Гибрид">Гибрид</option>
+                  <option value="Релокация">Релокация</option>
+                </select>
+              </label>
+
+              <label class="full-width">
+                Интересующие страны
+                <input type="text" name="countries" placeholder="Россия, Германия, Нидерланды..." />
+              </label>
+
+              <label class="full-width">
+                Кратко о себе
+                <textarea name="about" rows="4" placeholder="Напиши коротко о себе, целях и сильных сторонах"></textarea>
+              </label>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" class="primary-btn" id="saveProfileBtn">
+                Сохранить профиль
+              </button>
+
+              <button type="button" class="ghost-btn" id="clearProfileBtn">
+                Очистить
+              </button>
+            </div>
+
+            <p class="save-status" id="profileStatus">
+              Пока данные не сохранены.
+            </p>
+          </form>
+        </div>
+
+        <div class="hint-banner">
+          <strong>Подсказка:</strong> сейчас профиль сохраняется только локально в браузере.
+          Позже подключим базу данных и синхронизацию с ботом.
+        </div>
+      </section>
+
+      <!-- JOBS -->
+      <section class="screen" id="screen-jobs">
+        <div class="page-heading">
+          <div>
+            <p class="page-label">вакансии</p>
+            <h2>Демо-поиск</h2>
+          </div>
+
+          <button class="small-back-btn" data-screen-target="home" type="button">
+            На главную
+          </button>
+        </div>
+
+        <div class="filter-card">
+          <div class="form-grid">
+            <label>
+              Должность
+              <input type="text" placeholder="Например: Junior Frontend Developer" />
+            </label>
+
+            <label>
+              Зарплата от
+              <input type="number" placeholder="60000" />
+            </label>
+
+            <label>
+              Валюта
+              <select>
+                <option>₽ RUB</option>
+                <option>$ USD</option>
+                <option>€ EUR</option>
+                <option>£ GBP</option>
+              </select>
+            </label>
+
+            <label>
+              Формат работы
+              <select>
+                <option>Удалёнка</option>
+                <option>Офис</option>
+                <option>Гибрид</option>
+                <option>Релокация</option>
+              </select>
+            </label>
+          </div>
+
+          <button class="primary-btn" id="demoSearchBtn" type="button">
+            Искать вакансии
+          </button>
+        </div>
+
+        <div class="hint-banner">
+          Здесь пока демо-раздел. Позже сюда подключим настоящий поиск вакансий.
+        </div>
+      </section>
+
+      <!-- STATS -->
+      <section class="screen" id="screen-stats">
+        <div class="page-heading">
+          <div>
+            <p class="page-label">аналитика</p>
+            <h2>Текущая статистика</h2>
+          </div>
+
+          <button class="small-back-btn" data-screen-target="home" type="button">
+            На главную
+          </button>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span>Найдено вакансий</span>
+            <strong>0</strong>
+          </div>
+
+          <div class="stat-card">
+            <span>Откликов отправлено</span>
+            <strong>0</strong>
+          </div>
+
+          <div class="stat-card">
+            <span>Просмотров</span>
+            <strong>0</strong>
+          </div>
+
+          <div class="stat-card">
+            <span>Интервью</span>
+            <strong>0</strong>
+          </div>
+
+          <div class="stat-card">
+            <span>Отказов</span>
+            <strong>0</strong>
+          </div>
+
+          <div class="stat-card">
+            <span>Офферов</span>
+            <strong>0</strong>
+          </div>
+        </div>
+
+        <div class="analytics-panels">
+          <div class="analytics-card">
+            <h3>Воронка</h3>
+            <ul>
+              <li>Найдено: <strong>0</strong></li>
+              <li>Сохранено: <strong>0</strong></li>
+              <li>Откликнулись: <strong>0</strong></li>
+              <li>Просмотрено: <strong>0</strong></li>
+              <li>Интервью: <strong>0</strong></li>
+              <li>Оффер: <strong>0</strong></li>
+            </ul>
+          </div>
+
+          <div class="analytics-card">
+            <h3>Причины отказов</h3>
+            <p>
+              Пока данных нет. Когда подключим отклики, здесь будут причины отказов
+              и рекомендации по улучшению стратегии.
+            </p>
+          </div>
+
+          <div class="analytics-card">
+            <h3>Слабые места резюме</h3>
+            <p>
+              Пока данных нет. Позже сервис будет показывать, что стоит усилить
+              в резюме, профиле и портфолио.
+            </p>
+          </div>
+        </div>
+
+        <div class="hint-banner">
+          Сейчас все значения по нулям, потому что реальные данные ещё не подключены.
+        </div>
+      </section>
+
+    </main>
+
+    <nav class="bottom-nav">
+      <button class="nav-btn active" data-screen-target="home" type="button">
+        <span>🏠</span>
+        <small>Главная</small>
+      </button>
+
+      <button class="nav-btn" data-screen-target="profile" type="button">
+        <span>👤</span>
+        <small>Профиль</small>
+      </button>
+
+      <button class="nav-btn" data-screen-target="jobs" type="button">
+        <span>🔎</span>
+        <small>Вакансии</small>
+      </button>
+
+      <button class="nav-btn" data-screen-target="stats" type="button">
+        <span>📊</span>
+        <small>Аналитика</small>
+      </button>
+    </nav>
+
+    <div class="modal" id="modal">
+      <div class="modal-card">
+        <button class="close-btn" id="closeModal" type="button">×</button>
+
+        <div class="modal-icon" id="modalIcon">🌿</div>
+
+        <h3 id="modalTitle">Раздел в разработке</h3>
+
+        <p id="modalText">
+          Эта функция уже заложена в структуру сервиса, но пока ещё не подключена.
+        </p>
+
+        <button class="primary-btn" id="okModal" type="button">
+          Понятно
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
